@@ -1,0 +1,108 @@
+package POS;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+public class GuiUi extends JFrame implements ActionListener {
+    private JPanel cardPanel;
+    private CardLayout cardLayout;
+    private MenuPanel menuPanel;
+
+    public GuiUi() {
+        // ... (JFrame setup)
+
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+        this.add(cardPanel, BorderLayout.CENTER); // Add cardPanel to the center
+
+        menuPanel = new MenuPanel(this);  
+        cardPanel.add(menuPanel, "menu");
+
+        this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == menuPanel.getSalesButton()) { 
+            SalesUI salesUI = new SalesUI(this); 
+            cardPanel.add(salesUI, "sales");  
+            cardLayout.show(cardPanel, "sales"); 
+        } 
+        // ... other actions for different buttons
+    }
+
+    // MenuPanel class
+    class MenuPanel extends JPanel {
+        private JButton salesButton; // Declare at the class level
+        private GuiUi parentFrame; // Reference to the main frame
+
+        public MenuPanel(GuiUi parentFrame) {
+            this.parentFrame = parentFrame;
+            this.setLayout(new GridLayout(4, 2, 20, 20)); // Use GridLayout for better layout
+
+            // ... (initialize other buttons)
+
+            salesButton = new JButton("Sales");
+            // ... (set button properties)
+            salesButton.addActionListener(parentFrame);
+            this.add(salesButton);
+
+            // ... (add other buttons)
+        }
+
+        public JButton getSalesButton() {
+            return salesButton;
+        }
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+package POS;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SalesUI extends JPanel {  // Extend JPanel, not JFrame
+    private GuiUi parentFrame; // Reference to the main frame
+
+    public SalesUI(GuiUi parentFrame) {
+        this.parentFrame = parentFrame;
+        this.setLayout(null); // Or use a better layout manager
+        this.setBackground(new Color(195, 214, 155));
+
+        JButton backButton = new JButton("Back to Menu");
+        backButton.setBounds(10, 10, 120, 30); // Example position
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardLayout cardLayout = (CardLayout) parentFrame.getContentPane().getLayout();
+                cardLayout.show(parentFrame.getContentPane(), "menu");
+            }
+        });
+        this.add(backButton);
+        // ... (add your sales-related components here)
+    }
+}
