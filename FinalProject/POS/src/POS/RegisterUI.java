@@ -5,12 +5,16 @@
 
 package POS;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,7 +28,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author antho
@@ -43,113 +48,149 @@ public class RegisterUI implements ActionListener
             
             public RegisterUI() 
             {
-                
+                //creates the frame
                 f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                f.setSize(400,400);
+                f.setSize(400,200);
                 f.setLocationRelativeTo(null);
                 f.setVisible(true);
-                f.setLayout(new FlowLayout());
+                f.setLayout(new BorderLayout());
                 f.setResizable(false);
-                f.getContentPane().setBackground(new Color(238, 236, 225));
+                f.getContentPane().setBackground(Color.BLACK);
                 f.setTitle("Register");
-
+                //creates the first panel
                 JPanel panel1 = new JPanel();
                 panel1.setBounds(50, 300, 1000, 300);
-                panel1.setBackground(new Color(195,214,155));
-                panel1.setLayout(new GridLayout());
-
+                panel1.setBackground(Color.BLACK);
+                panel1.setLayout(new GridLayout(2,2));
+                //creates the second panel
                 JPanel panel2 = new JPanel();
                 panel2.setBounds(50, 600, 1000, 300);
-                panel2.setBackground(new Color(195,214,155));
+                panel2.setBackground(Color.BLACK);
                 panel2.setLayout(new GridLayout());
 
-
+                //creates the labels
                 JLabel Username = new JLabel("Username:");
                 Username.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 Username.setHorizontalAlignment(JLabel.CENTER);
                 Username.setOpaque(true);
-                Username.setForeground(Color.black);
-                Username.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                Username.setForeground(Color.yellow);
+                Username.setBackground(Color.black);
+                Username.setBorder(MenuUI.border);
                 Username.setFocusable(false);
-                
+                //creates the password label
                 JLabel Password = new JLabel("Password:");
                 Password.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 Password.setHorizontalAlignment(JLabel.CENTER);
                 Password.setOpaque(true);
-                Password.setForeground(Color.black);
-                Password.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                Password.setForeground(Color.yellow);
+                Password.setBackground(Color.black);
+                Password.setBorder(MenuUI.border);
                 Password.setFocusable(false);
 
 
 
-
+                //creates the text fields
                 UsernameField = new JTextField();
                 UsernameField.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 UsernameField.setHorizontalAlignment(JTextField.CENTER);
                 UsernameField.setOpaque(true);
-                UsernameField.setForeground(Color.black);
-                UsernameField.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                UsernameField.setForeground(Color.yellow);
+                UsernameField.setBackground(Color.black);
+                UsernameField.setBorder(MenuUI.border);
 
-
+                //creates the password field
                 PasswordField = new JPasswordField();
                 PasswordField.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 PasswordField.setHorizontalAlignment(JTextField.CENTER);
                 PasswordField.setOpaque(true);
-                PasswordField.setForeground(Color.black);
-                PasswordField.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                PasswordField.setForeground(Color.yellow);
+                PasswordField.setBackground(Color.black);
+                PasswordField.setBorder(MenuUI.border);
                 
 
-
+                //creates the register button
                 RegisterButton = new JButton("Register");
                 RegisterButton.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 RegisterButton.setFocusable(false);
-                RegisterButton.setForeground(Color.black);
-                RegisterButton.setBackground(new Color(192,192,192));
-                RegisterButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                RegisterButton.setForeground(Color.yellow);
+                RegisterButton.setBackground(Color.black);
+                RegisterButton.setBorder(MenuUI.border);
                 RegisterButton.addActionListener(this);
                 RegisterButton.setFocusable(false);
-
+                //adds the components to the panels
                 panel1.add(Username);
                 panel1.add(UsernameField);
-                f.add(panel1);
-                panel2.add(Password);
-                panel2.add(PasswordField);
-                f.add(panel2);
-                f.add(RegisterButton);
+                panel1.add(Password);
+                panel1.add(PasswordField);
+                panel2.add(RegisterButton);
+                f.add(panel1, BorderLayout.CENTER);
+                f.add(panel2, BorderLayout.SOUTH);
+                
+                //disables the main menu
+                MenuUI.instance.setEnabled(false);
 
-
+                //press enter to register 
+                UsernameField.addKeyListener(new KeyAdapter() {
+                    public void keyPressed(KeyEvent e) {
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            RegisterButton.doClick();
+                        }
+                    }
+                });
+                //press enter to register
+                PasswordField.addKeyListener(new KeyAdapter() {
+                    public void keyPressed(KeyEvent e) {
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            RegisterButton.doClick();
+                        }
+                    }
+                });
 
 }
 
+
     @Override
+    
     public void actionPerformed(ActionEvent e) 
     {
+        
+        //if the register button is pressed
         if(e.getSource() == RegisterButton)
         {
             String Username = UsernameField.getText();
-            String Password = PasswordField.getText();
-
+            char[] passwordChars = PasswordField.getPassword();
+            String Password = new String(passwordChars);
+            
             if(Username.isEmpty() || Password.isEmpty())
             {
                 return;
             }
+            //adds the username and password to the list
             MenuUI.instance.setEnabled(true);
             MenuUI.instance.toFront();
             MenuUI.instance.requestFocus();
-            f.dispose();
+            MenuUI.User.setText("User:" + UsernameField.getText());
+            
+            //writes the username and password to the file
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 writer.write(Username + "\n" + Password);
                 
                 
                 
                 System.out.println("Successfully wrote to the file.");
+                
     
             } catch (IOException ee) {
                 System.out.println("An error occurred."); 
             }
-
+            //reads the file
             UsernameString = lines.get(0);
             PasswordString = lines.get(1);
+
+            //if the username and password are correct
+            f.dispose();
         }
+        
+        
     }
 }

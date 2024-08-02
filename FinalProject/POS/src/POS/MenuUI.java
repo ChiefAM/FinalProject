@@ -1,7 +1,9 @@
 package POS;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -14,6 +16,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 
 
 /**
@@ -34,22 +39,31 @@ public class MenuUI extends JFrame implements ActionListener
     String fileName = "credentials.txt";
     String line;
     List<String> lines = new ArrayList<>();
-
-
-    {
-        this.setEnabled(true);
-    }
+    
+    public static Border outerBorder = BorderFactory.createMatteBorder(1, 1, 2, 2, Color.YELLOW); // Top, left, bottom, right
+    public static Border innerBorder = BorderFactory.createEmptyBorder(2, 2, 0, 0); // Add padding
+    public static CompoundBorder border = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
+    
     public MenuUI()
     {
         
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+
+            while ((line = reader.readLine()) != null) {
+                lines.add(line); 
+
+            }
+            } catch (IOException ee) {
+            System.out.println("Error reading file: " + ee.getMessage());
+            }
         instance = this;
         //this is the main menu
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 800);
         this.setExtendedState(JFrame. MAXIMIZED_BOTH);
         this.setVisible(true);
-        this.setLayout(new FlowLayout());
-        this.getContentPane().setBackground(new Color(238, 236, 225));
+        this.setLayout(new BorderLayout());
+        this.getContentPane().setBackground(Color.black);
         this.setTitle("Point of Sale System");
 
 
@@ -59,7 +73,7 @@ public class MenuUI extends JFrame implements ActionListener
         POSOption.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         POSOption.setHorizontalAlignment(JLabel.CENTER);
         POSOption.setOpaque(true);
-        POSOption.setForeground(Color.white);
+        POSOption.setForeground(Color.YELLOW);
         POSOption.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         POSOption.setOpaque(true);
         POSOption.setBackground(new Color(119,147,60));
@@ -69,8 +83,8 @@ public class MenuUI extends JFrame implements ActionListener
         Sales.setBounds(50, 100, 400, 50);
         Sales.setFocusable(false);
         Sales.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Sales.setForeground(Color.black);
-        Sales.setBackground(new Color(192,192,192));
+        Sales.setForeground(Color.yellow);
+        Sales.setBackground(Color.black);
         Sales.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         Sales.addActionListener(this);
         //
@@ -80,27 +94,27 @@ public class MenuUI extends JFrame implements ActionListener
         Settings.setBounds(50, 200, 400, 50);
         Settings.setFocusable(false);
         Settings.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Settings.setForeground(Color.black);
-        Settings.setBackground(new Color(192,192,192));
-        Settings.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        Settings.setForeground(Color.YELLOW);
+        Settings.setBackground(Color.BLACK);
+        Settings.setBorder(border);
         Settings.addActionListener(this);
 
         UserRegister = new JButton("Register");
         UserRegister.setBounds(450, 100, 400, 50);
         UserRegister.setFocusable(false);
         UserRegister.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserRegister.setForeground(Color.black);
-        UserRegister.setBackground(new Color(192,192,192));
-        UserRegister.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        UserRegister.setForeground(Color.YELLOW);
+        UserRegister.setBackground(Color.BLACK);
+        UserRegister.setBorder(border);
         UserRegister.addActionListener(this);
 
         UserLogin = new JButton("Login");
         UserLogin.setBounds(450, 150, 400, 50);
         UserLogin.setFocusable(false);
         UserLogin.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserLogin.setForeground(Color.black);
-        UserLogin.setBackground(new Color(192,192,192));
-        UserLogin.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        UserLogin.setForeground(Color.YELLOW);
+        UserLogin.setBackground(Color.BLACK);
+        UserLogin.setBorder(border);
         UserLogin.addActionListener(this);
 
 
@@ -108,73 +122,65 @@ public class MenuUI extends JFrame implements ActionListener
         UserLogout.setBounds(450, 200, 400, 50);
         UserLogout.setFocusable(false);
         UserLogout.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserLogout.setForeground(Color.black);
-        UserLogout.setBackground(new Color(192,192,192));
-        UserLogout.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        UserLogout.setForeground(Color.YELLOW);
+        UserLogout.setBackground(Color.BLACK);
+        UserLogout.setBorder(border);
         UserLogout.addActionListener(this);
 
 
 
-
+        
         User = new JLabel("User: Guest");
         User.setBounds(70, 40, 300, 45);
         User.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         User.setHorizontalAlignment(JLabel.CENTER);
         User.setOpaque(true);
-        User.setForeground(Color.white);
-        User.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        User.setForeground(Color.black);
+        User.setBorder(border);
         User.setOpaque(true);
-        User.setBackground(new Color(119,147,60));
-        User.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        User.setBackground(Color.yellow);
+        User.setBorder(border);
+
+
+        JPanel mp = new JPanel();
+        mp.setLayout(new GridLayout());
+        mp.setBackground(Color.black);
+        this.add(mp, BorderLayout.CENTER);
+
+        JPanel up = new JPanel();
+        up.setLayout(new GridLayout());
+        up.setBackground(Color.black);
+        this.add(up, BorderLayout.NORTH);
 
 
 
 
+        up.add(User);
+        mp.add(Settings);
+        mp.add(UserLogout);
+        mp.add(UserLogin);
+        mp.add(UserRegister);
+        mp.add(Sales);
+        if (lines.isEmpty()) {
+            new RegisterUI();
+        } else {
+            new LoginUI();
+        }
+        }
 
-
-
-
-        this.add(User);
-        this.add(POSOption);
-        this.add(Settings);
-        this.add(UserLogout);
-        this.add(UserLogin);
-        this.add(UserRegister);
-        this.add(Sales);
+        @Override
+        public void actionPerformed(ActionEvent e) {
         
-
-
-
-}
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        
+        
         if(e.getSource() == Sales)
         {
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-            while ((line = reader.readLine()) != null) {
-                lines.add(line); 
 
-            }
-            } catch (IOException ee) {
-            System.out.println("Error reading file: " + ee.getMessage());
-            }
-            if(lines.isEmpty()){
-                new RegisterUI();
-            }
-            else if(LoginUI.UsernameString!=null)
-            {
                 new SalesUI();
                 //close the current window
                 this.dispose();
-            }
-            else 
-            {
-                new LoginUI();
-                //close the current window
-                
-                
-            }
+
 
             
         }
@@ -187,27 +193,50 @@ public class MenuUI extends JFrame implements ActionListener
         }
         else if(e.getSource() == UserRegister)
         {
-            RegisterUI r = new RegisterUI();
-            //close the current window
-            this.setEnabled(false);
+            if(fileName.isEmpty())
+            {
+                new RegisterUI();
+                //close the current window
+                this.setEnabled(false);
+            }
+            else
+            {
+                System.out.println("You are already registered");
+            }
+
 
             
             
         }
         else if(e.getSource() == UserLogin)
         {
+            if(User.getText().equals("User: Guest"))
+            {
             new LoginUI();
             //close the current window
             this.setEnabled(false);
-            
+            }
+            else
+            {
+                System.out.println("You are already logged in");
+            }
             
             
         }
         else if(e.getSource() == UserLogout)
         {
-            LoginUI.UsernameString = null;
-            LoginUI.PasswordString = null;
-            User.setText("User: Guest");
+            if(!User.getText().equals("User: Guest"))
+            {
+                LoginUI.UsernameString = null;
+                LoginUI.PasswordString = null;
+                User.setText("User: Guest");
+                System.out.println("You have been logged out");
+            }
+            else
+            {
+                System.out.println("You are already logged out");
+            }
+
             
             
             

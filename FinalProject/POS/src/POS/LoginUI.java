@@ -5,16 +5,20 @@
 
 package POS;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -46,22 +50,22 @@ public class LoginUI implements ActionListener
 
                 
                 f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                f.setSize(400,400);
+                f.setSize(400,200);
                 f.setLocationRelativeTo(null);
                 f.setVisible(true);
-                f.setLayout(new FlowLayout());
+                f.setLayout(new BorderLayout());
                 f.setResizable(false);
                 f.getContentPane().setBackground(new Color(238, 236, 225));
                 f.setTitle("Login");
 
                 JPanel panel1 = new JPanel();
                 panel1.setBounds(50, 300, 1000, 300);
-                panel1.setBackground(new Color(195,214,155));
-                panel1.setLayout(new GridLayout());
+                panel1.setBackground(Color.BLACK);
+                panel1.setLayout(new GridLayout(2,2));
 
                 JPanel panel2 = new JPanel();
                 panel2.setBounds(50, 600, 1000, 300);
-                panel2.setBackground(new Color(195,214,155));
+                panel2.setBackground(Color.BLACK);
                 panel2.setLayout(new GridLayout());
 
 
@@ -69,16 +73,18 @@ public class LoginUI implements ActionListener
                 Username.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 Username.setHorizontalAlignment(JLabel.CENTER);
                 Username.setOpaque(true);
-                Username.setForeground(Color.black);
-                Username.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                Username.setForeground(Color.yellow);
+                Username.setBackground(Color.black);
+                Username.setBorder(MenuUI.border);
                 Username.setFocusable(false);
                 
                 JLabel Password = new JLabel("Password:");
                 Password.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 Password.setHorizontalAlignment(JLabel.CENTER);
                 Password.setOpaque(true);
-                Password.setForeground(Color.black);
-                Password.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                Password.setForeground(Color.yellow);
+                Password.setBackground(Color.black);
+                Password.setBorder(MenuUI.border);
                 Password.setFocusable(false);
 
 
@@ -88,37 +94,55 @@ public class LoginUI implements ActionListener
                 UsernameField.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 UsernameField.setHorizontalAlignment(JTextField.CENTER);
                 UsernameField.setOpaque(true);
-                UsernameField.setForeground(Color.black);
-                UsernameField.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                UsernameField.setForeground(Color.yellow);
+                UsernameField.setBackground(Color.black);
+                UsernameField.setBorder(MenuUI.border);
+
 
                 PasswordField = new JPasswordField();
                 PasswordField.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 PasswordField.setHorizontalAlignment(JTextField.CENTER);
                 PasswordField.setOpaque(true);
-                PasswordField.setForeground(Color.black);
-                PasswordField.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                PasswordField.setForeground(Color.yellow);
+                PasswordField.setBackground(Color.black);
+                PasswordField.setBorder(MenuUI.border);
                 
 
 
                 LoginButton = new JButton("Login");
                 LoginButton.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
                 LoginButton.setFocusable(false);
-                LoginButton.setForeground(Color.black);
-                LoginButton.setBackground(new Color(192,192,192));
-                LoginButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                LoginButton.setForeground(Color.yellow);
+                LoginButton.setBackground(Color.black);
+                LoginButton.setBorder(MenuUI.border);
                 LoginButton.addActionListener(this);
                 LoginButton.setFocusable(false);
 
                 panel1.add(Username);
                 panel1.add(UsernameField);
-                f.add(panel1);
-                panel2.add(Password);
-                panel2.add(PasswordField);
-                f.add(panel2);
-                f.add(LoginButton);
+                panel1.add(Password);
+                panel1.add(PasswordField);
+                panel2.add(LoginButton);
+                f.add(panel1, BorderLayout.CENTER);
+                f.add(panel2, BorderLayout.SOUTH);
 
+                UsernameField.addKeyListener(new KeyAdapter() {
+                    public void keyPressed(KeyEvent e) {
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            LoginButton.doClick();
+                        }
+                    }
+                });
 
+                PasswordField.addKeyListener(new KeyAdapter() {
+                    public void keyPressed(KeyEvent e) {
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            LoginButton.doClick();
+                        }
+                    }
+                });
 
+                MenuUI.instance.setEnabled(false);
     }
 
     @Override
@@ -139,7 +163,7 @@ public class LoginUI implements ActionListener
             }
             UsernameString = lines.get(0);
             PasswordString = lines.get(1);
-            if(UsernameField.getText().equals(UsernameString) && PasswordField.getText().equals(PasswordString))
+            if(Arrays.equals(PasswordField.getPassword(), PasswordString.toCharArray()) && UsernameField.getText().equals(UsernameString))
             {
                 MenuUI.instance.setEnabled(true);
                 MenuUI.instance.toFront();
