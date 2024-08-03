@@ -13,10 +13,10 @@ This is my first program that I have ever made and I am very proud of it. I have
 
 #### Main Features:
 - Making sales 🟢
-- Save a sale and come back to it later 🔴
+- Save a sale and come back to it later 🟡
 - Quick Products buttons on the sale screen 🟢
 - Print and redeem your own gift vouchers 🔴
-- Optional Fast Pay and item autocomplete windows 
+- Optional Fast Pay and item autocomplete windows 🟡
 - Product prices can be stored including sales tax 🟡
 - Simple stock management and stock re-order reports 🟡
 - Basic security: sales, supervisor and administrator passwords 🟡
