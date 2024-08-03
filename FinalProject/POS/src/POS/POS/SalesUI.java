@@ -13,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.EventObject;
 import java.util.Vector;
 import javax.swing.BorderFactory;
@@ -46,7 +47,8 @@ import javax.swing.table.TableColumn;
 public class SalesUI implements ActionListener
 {
         //variables
-        public static double totall = 0;
+        public static double totall = 0.0;
+        DecimalFormat df = new DecimalFormat("#.##"); 
         public static JLabel total = new JLabel("Total: ");
         public static JTable table = new JTable();
         public static String p1 = "";
@@ -108,11 +110,14 @@ public class SalesUI implements ActionListener
             public void tableChanged(TableModelEvent e) {
                 
                 //total = total price + each other 
-                totall = 0;
+                totall = 0.00;
                 for (int i = 0; i < model.getRowCount(); i++) {
-                    totall += Float.parseFloat(model.getValueAt(i, 3).toString());
+
+                    
+                    
+                    totall += Double.parseDouble(String.format("%.2f", model.getValueAt(i, 3)));
                 } 
-                total.setText("Total: " + totall + "$");
+                total.setText("Total: " + String.format("%.2f", totall) + "$");
             }
         });
 

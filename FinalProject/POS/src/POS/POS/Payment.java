@@ -64,7 +64,7 @@ public class Payment {
         p.setLayout(new GridLayout(4,0));
         p.setBorder(MenuUI.border);
 
-        double ThisTotal = SalesUI.totall;
+        double ThisTotal = Double.parseDouble(String.format("%.2f", SalesUI.totall));
         //creates the payment options
         cash.setBackground(Color.black);
         cash.setForeground(Color.YELLOW);
