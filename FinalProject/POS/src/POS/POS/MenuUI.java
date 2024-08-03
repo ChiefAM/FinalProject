@@ -35,7 +35,7 @@ public class MenuUI extends JFrame implements ActionListener
     JButton UserLogin;
     JButton UserLogout;
     JButton UserRegister;
-    JButton setCustomorOrderstings;
+    JButton createCustomer;
     public static JFrame instance;
     String fileName = "credentials.txt";
     String line;
@@ -44,7 +44,7 @@ public class MenuUI extends JFrame implements ActionListener
     public static Border outerBorder = BorderFactory.createMatteBorder(1, 1, 2, 2, Color.YELLOW); // Top, left, bottom, right
     public static Border innerBorder = BorderFactory.createEmptyBorder(2, 2, 0, 0); // Add padding
     public static CompoundBorder border = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
-    
+    JButton customerOrder;
     public MenuUI()
     {
         
@@ -90,14 +90,14 @@ public class MenuUI extends JFrame implements ActionListener
         //
 
 
-        setCustomorOrderstings = new JButton("Customer Orders");
-        setCustomorOrderstings.setBounds(50, 200, 400, 50);
-        setCustomorOrderstings.setFocusable(false);
-        setCustomorOrderstings.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        setCustomorOrderstings.setForeground(Color.YELLOW);
-        setCustomorOrderstings.setBackground(Color.BLACK);
-        setCustomorOrderstings.setBorder(border);
-        setCustomorOrderstings.addActionListener(this);
+        createCustomer = new JButton("Create Customer");
+        createCustomer.setBounds(50, 200, 400, 50);
+        createCustomer.setFocusable(false);
+        createCustomer.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        createCustomer.setForeground(Color.YELLOW);
+        createCustomer.setBackground(Color.BLACK);
+        createCustomer.setBorder(border);
+        createCustomer.addActionListener(this);
 
         UserRegister = new JButton("Register");
         UserRegister.setBounds(450, 100, 400, 50);
@@ -151,13 +151,23 @@ public class MenuUI extends JFrame implements ActionListener
         up.setLayout(new GridLayout());
         up.setBackground(Color.black);
         this.add(up, BorderLayout.NORTH);
+        
+        customerOrder = new JButton("Customer Order");
+        customerOrder.setBounds(450, 200, 400, 50);
+        customerOrder.setFocusable(false);
+        customerOrder.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        customerOrder.setForeground(Color.YELLOW);
+        customerOrder.setBackground(Color.BLACK);
+        customerOrder.setBorder(border);
+        customerOrder.addActionListener(this);
 
 
-
+        
 
         mp.add(User);
         up.add(POSOption);
-        mp.add(setCustomorOrderstings);
+        mp.add(customerOrder);
+        mp.add(createCustomer);
         mp.add(UserLogout);
         mp.add(UserLogin);
         mp.add(UserRegister);
@@ -190,9 +200,9 @@ public class MenuUI extends JFrame implements ActionListener
 
             
         }
-        else if(e.getSource() == setCustomorOrderstings)
+        else if(e.getSource() == createCustomer)
         {
-            new CustomerOrder();
+            new CreateCustomer();
 
             
         }
@@ -244,6 +254,12 @@ public class MenuUI extends JFrame implements ActionListener
             
             
             
+        }
+        if(e.getSource() == customerOrder)
+        {
+            new CustomerOrder();
+
+
         }
 
 
