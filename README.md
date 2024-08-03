@@ -1,6 +1,9 @@
 # FinalProject
-Point of Sale System done in java 
+Point of Sale System done in java
+
 Final project (Name to be determined) by Anthony Mouawad AKA ChiefAM
+
+Its my first program!!
 
 Main Features:
 - Making sales
