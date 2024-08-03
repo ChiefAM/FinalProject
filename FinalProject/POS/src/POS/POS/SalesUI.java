@@ -70,7 +70,8 @@ public class SalesUI implements ActionListener
         JButton AddItems;
         Vector<Object> rowData = new Vector<>();
         String[] columnNames = {"Item Name", "Price", "Quantity", "Total price"};
-
+        JButton payment;
+        JButton backToMenuButton;
     public SalesUI() 
     {
         
@@ -241,12 +242,12 @@ public class SalesUI implements ActionListener
         
 
         //creates the payment button
-        JButton Payment = new JButton("Payment");
-        Payment.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Payment.setBackground(Color.black);
-        Payment.setForeground(Color.yellow);
-        Payment.setBorder(MenuUI.border);
-        Payment.addActionListener(this);
+        payment = new JButton("Payment");
+        payment.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        payment.setBackground(Color.black);
+        payment.setForeground(Color.yellow);
+        payment.setBorder(MenuUI.border);
+        payment.addActionListener(this);
 
 
         
@@ -260,7 +261,7 @@ public class SalesUI implements ActionListener
         total.setText("Total: " + totall);
         
         //creates the back to menu button
-        JButton backToMenuButton = new JButton("Back to Menu");
+        backToMenuButton = new JButton("Back to Menu");
         backToMenuButton.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         backToMenuButton.setBackground(Color.black);
         backToMenuButton.setForeground(Color.yellow);
@@ -333,7 +334,7 @@ public class SalesUI implements ActionListener
         ItemJPanel.add(product4);
         ItemJPanel.add(product5);
         //adds the components to the frame
-        bot.add(Payment);
+        bot.add(payment);
         bot.add(AddItems);
         bot.add(backToMenuButton);
         //adds the components to the frame
@@ -361,42 +362,94 @@ public class SalesUI implements ActionListener
         }
         //if the products button are clicked
         if(e.getSource() == product1){
-           //creates the add item to the table
+
+            if(prices[0] == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Add a product");
+                return;
+            }
+            //creates the add item to the table
             model.addRow(new Object[]{items[0], prices[0], quantity,    prices[0]});
             //decreases the stock
             stock[0]--;
+                       
 
         }
         else if(e.getSource() == product2)
         {
 
+
+
+            if(prices[1] == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Add a product");
+                return;
+            }
             model.addRow(new Object[]{items[1], prices[1],quantity,prices[1]});
             stock[1]--;
+
+
         }
         else if(e.getSource() == product3)
         {
 
+
+            if(prices[2] == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Add a product");
+                return;
+            }
             model.addRow(new Object[]{items[2], prices[2],quantity,prices[2]});
             stock[2]--;
         }
         else if(e.getSource() == product4)
         {
 
+
+            if(prices[3] == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Add a product");
+                return;
+            }
             model.addRow(new Object[]{items[3], prices[3],quantity,prices[3]});
             stock[3]--;
         }
         else if(e.getSource() == product5)
         {
 
+
+            if(prices[4] == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Add a product");
+                return;
+            }
             model.addRow(new Object[]{items[4], prices[4],quantity,prices[4]});
             stock[4]--;
         }
 
+        if(e.getSource() == payment)
+        {
+            if(model.getRowCount() == 0)
+            {
+                JOptionPane.showMessageDialog(null, "No items in the cart");
+                return;
 
-
+            }
+            //creates the payment frame
+            new Payment();
+            //cannot access the frame
+            f.setEnabled(false);
+        }
+        if(e.getSource() == backToMenuButton)
+        {
+            //creates the menu frame
+            new MenuUI();
+            //closes this frame
+            f.dispose();
+        }
         
 
-
+        
 
     }
     

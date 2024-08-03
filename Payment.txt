@@ -1,0 +1,4 @@
+Cash Payment: 42.0$ at 03/08/2024 08:39:56
+Cash Payment: 64.0$ at 03/08/2024 08:40:39
+Cash Payment: 120.0$ at 03/08/2024 08:59:22
+Visa Payment: 24.0$ at 03/08/2024 08:59:57

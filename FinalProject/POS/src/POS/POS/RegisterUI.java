@@ -170,7 +170,7 @@ public class RegisterUI implements ActionListener
             MenuUI.instance.toFront();
             MenuUI.instance.requestFocus();
             MenuUI.User.setText("User:" + UsernameField.getText());
-            
+            f.dispose();
             //writes the username and password to the file
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 writer.write(Username + "\n" + Password);
@@ -186,9 +186,7 @@ public class RegisterUI implements ActionListener
             //reads the file
             UsernameString = lines.get(0);
             PasswordString = lines.get(1);
-
-            //if the username and password are correct
-            f.dispose();
+            
         }
         
         

@@ -163,7 +163,8 @@ public class MenuUI extends JFrame implements ActionListener
         mp.add(Sales);
         if (lines.isEmpty()) {
             new RegisterUI();
-        } else {
+        } else if (User.getText().equals("User: Guest"))
+        {
             new LoginUI();
         }
         }
