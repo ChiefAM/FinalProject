@@ -16,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -68,16 +69,15 @@ public class MenuUI extends JFrame implements ActionListener
 
 
         //this is the POSOption button in the first panel
-        POSOption = new JLabel("POS Options:");
-        POSOption.setBounds(70, 40, 300, 45);
-        POSOption.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        POSOption = new JLabel("Point of Sale System");
+        POSOption.setBounds(50, 50, 800, 50);
+        POSOption.setFont(new Font("Cosmic Sans",Font.BOLD, 40));
+        POSOption.setForeground(Color.yellow);
         POSOption.setHorizontalAlignment(JLabel.CENTER);
         POSOption.setOpaque(true);
-        POSOption.setForeground(Color.YELLOW);
-        POSOption.setBorder(BorderFactory.createRaisedSoftBevelBorder());
-        POSOption.setOpaque(true);
-        POSOption.setBackground(new Color(119,147,60));
-        POSOption.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        POSOption.setBackground(Color.black);
+        POSOption.setBorder(border);
+    
         //this is the Sales button in the first panel
         Sales = new JButton("Sales");
         Sales.setBounds(50, 100, 400, 50);
@@ -85,7 +85,7 @@ public class MenuUI extends JFrame implements ActionListener
         Sales.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         Sales.setForeground(Color.yellow);
         Sales.setBackground(Color.black);
-        Sales.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        Sales.setBorder(border);
         Sales.addActionListener(this);
         //
 
@@ -135,10 +135,10 @@ public class MenuUI extends JFrame implements ActionListener
         User.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         User.setHorizontalAlignment(JLabel.CENTER);
         User.setOpaque(true);
-        User.setForeground(Color.black);
+        User.setForeground(Color.yellow);
         User.setBorder(border);
         User.setOpaque(true);
-        User.setBackground(Color.yellow);
+        User.setBackground(Color.black);
         User.setBorder(border);
 
 
@@ -155,7 +155,8 @@ public class MenuUI extends JFrame implements ActionListener
 
 
 
-        up.add(User);
+        mp.add(User);
+        up.add(POSOption);
         mp.add(Settings);
         mp.add(UserLogout);
         mp.add(UserLogin);
@@ -178,6 +179,10 @@ public class MenuUI extends JFrame implements ActionListener
         {
 
 
+            if(User.getText().equals("User: Guest")){
+                JOptionPane.showMessageDialog(null, "You must be logged in to make a sale");
+                return;
+            }
                 new SalesUI();
                 //close the current window
                 this.dispose();

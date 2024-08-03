@@ -1,2 +1,2 @@
-Cash Payment: 37.46999967098236$ at 03/08/2024 09:26:45 by null
 Cash Payment: 6.0$ at 03/08/2024 10:34:33 by User:anthony
+Cash Payment: 0.0$ at 03/08/2024 17:56:33 by User:anthony

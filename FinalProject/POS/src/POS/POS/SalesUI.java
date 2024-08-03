@@ -13,8 +13,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.EventObject;
+import java.util.Scanner;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -29,6 +35,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.DocumentEvent;
@@ -40,6 +47,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 
+
 /**
  *
  * @author antho
@@ -47,7 +55,8 @@ import javax.swing.table.TableColumn;
 public class SalesUI implements ActionListener
 {
         //variables
-        public static double totall = 0.0;
+        int ii = 0;
+        public static float totall = 0.00f;
         DecimalFormat df = new DecimalFormat("#.##"); 
         public static JLabel total = new JLabel("Total: ");
         public static JTable table = new JTable();
@@ -74,9 +83,11 @@ public class SalesUI implements ActionListener
         String[] columnNames = {"Item Name", "Price", "Quantity", "Total price"};
         JButton payment;
         JButton backToMenuButton;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
     public SalesUI() 
     {
         
+
         //creates the frame
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setExtendedState(JFrame. MAXIMIZED_BOTH);
@@ -110,7 +121,7 @@ public class SalesUI implements ActionListener
             public void tableChanged(TableModelEvent e) {
                 
                 //total = total price + each other 
-                totall = 0.00;
+                totall = 0.00f;
                 for (int i = 0; i < model.getRowCount(); i++) {
 
                     
@@ -156,7 +167,7 @@ public class SalesUI implements ActionListener
         sp.getViewport().setBackground(Color.BLACK);
         sp.getViewport().setForeground(Color.YELLOW);
         
-
+        
         //colors for the table
         UIManager.put("Table.background", Color.BLACK);
         UIManager.put("Table.foreground", Color.YELLOW);
@@ -330,6 +341,74 @@ public class SalesUI implements ActionListener
         product5.addActionListener(this);
         product5.setFocusable(false);
 
+
+
+        JButton saveSale = new JButton("Save Sale");
+        saveSale.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        saveSale.setBackground(Color.black);
+        saveSale.setForeground(Color.yellow);
+        saveSale.setBorder(MenuUI.border);
+        saveSale.addActionListener(e -> {
+            if(model.getRowCount() == 0)
+            {
+                JOptionPane.showMessageDialog(null, "No items in the cart");
+                return;
+
+            }
+            //creates the save sale frame
+            new SaveSale();
+            //cannot access the frame
+            
+        });
+// on hold
+/* 
+        JButton savedSale = new JButton("Saved Sale");
+        savedSale.setFont(new Font("Cosmic Sans", Font.BOLD, 25));
+        savedSale.setBackground(Color.black);
+        savedSale.setForeground(Color.yellow);
+        savedSale.setBorder(MenuUI.border);
+        
+        savedSale.addActionListener(e -> {
+            
+                model.setRowCount(0);
+        
+                try (BufferedReader reader = new BufferedReader(new FileReader("Sales.csv"))) {
+                    String line = reader.readLine(); // Read the first line
+        
+                    if (line != null) { 
+                        // CSV is not empty, process rows
+                        do {
+                           
+                            String[] rowData = line.split(",");
+                             model.addRow(rowData); 
+                            
+                        } while ((line = reader.readLine()) != null); 
+                    } else {
+                        // CSV is empty, display "No saved sales"
+                             {
+                            JOptionPane.showMessageDialog(null, "No saved sales");
+                        
+                            }
+                    }
+                }
+                 catch (FileNotFoundException ee) {
+                    ee.printStackTrace();
+                }
+                 catch (IOException ee) {
+                    ee.printStackTrace();
+                }});
+            
+*/
+
+            
+
+
+                            
+                        
+        
+        
+
+
         //adds the components to the frame
         f.add(ItemJPanel, BorderLayout.WEST);
         //adds the products to the item panel
@@ -341,6 +420,8 @@ public class SalesUI implements ActionListener
         //adds the components to the frame
         bot.add(payment);
         bot.add(AddItems);
+        bot.add(saveSale);
+        //bot.add(savedSale);
         bot.add(backToMenuButton);
         //adds the components to the frame
         f.add(SalesPanel, BorderLayout.CENTER);
@@ -374,7 +455,7 @@ public class SalesUI implements ActionListener
                 return;
             }
             //creates the add item to the table
-            model.addRow(new Object[]{items[0], prices[0], quantity,    prices[0]});
+            model.addRow(new Object[]{items[0], prices[0], quantity, prices[0]});
             //decreases the stock
             stock[0]--;
                        
