@@ -3,13 +3,13 @@ Point of Sale System done in java
 
 Final project (Name to be determined) by Anthony Mouawad AKA ChiefAM
 
-# Its my first program!!
-
+## Its my first program!!
+### Task Status Board
 🟢 Done
 🟡 In Progress
 🔴 Not Done
 
-Main Features:
+#### Main Features:
 - Making sales 🟢
 - Save a sale and come back to it later 🔴
 - Quick Products buttons on the sale screen 🟢
