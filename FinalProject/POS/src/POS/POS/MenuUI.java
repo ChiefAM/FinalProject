@@ -68,6 +68,18 @@ public class MenuUI extends JFrame implements ActionListener
         this.setTitle("Point of Sale System");
 
 
+        User = new JLabel("User: Guest");
+        User.setBounds(70, 40, 300, 45);
+        User.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        User.setHorizontalAlignment(JLabel.CENTER);
+        User.setOpaque(true);
+        User.setForeground(Color.yellow);
+        User.setBorder(border);
+        User.setOpaque(true);
+        User.setBackground(Color.black);
+        User.setBorder(border);
+
+
         //this is the POSOption button in the first panel
         POSOption = new JLabel("Point of Sale System");
         POSOption.setBounds(50, 50, 800, 50);
@@ -87,18 +99,8 @@ public class MenuUI extends JFrame implements ActionListener
         Sales.setBackground(Color.black);
         Sales.setBorder(border);
         Sales.addActionListener(this);
-        //
-
-
-        createCustomer = new JButton("Create Customer");
-        createCustomer.setBounds(50, 200, 400, 50);
-        createCustomer.setFocusable(false);
-        createCustomer.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        createCustomer.setForeground(Color.YELLOW);
-        createCustomer.setBackground(Color.BLACK);
-        createCustomer.setBorder(border);
-        createCustomer.addActionListener(this);
-
+  
+        //this is the UserRegister button in the first panel
         UserRegister = new JButton("Register");
         UserRegister.setBounds(450, 100, 400, 50);
         UserRegister.setFocusable(false);
@@ -107,6 +109,7 @@ public class MenuUI extends JFrame implements ActionListener
         UserRegister.setBackground(Color.BLACK);
         UserRegister.setBorder(border);
         UserRegister.addActionListener(this);
+
 
         UserLogin = new JButton("Login");
         UserLogin.setBounds(450, 150, 400, 50);
@@ -128,30 +131,18 @@ public class MenuUI extends JFrame implements ActionListener
         UserLogout.addActionListener(this);
 
 
-
-        
-        User = new JLabel("User: Guest");
-        User.setBounds(70, 40, 300, 45);
-        User.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        User.setHorizontalAlignment(JLabel.CENTER);
-        User.setOpaque(true);
-        User.setForeground(Color.yellow);
-        User.setBorder(border);
-        User.setOpaque(true);
-        User.setBackground(Color.black);
-        User.setBorder(border);
+        createCustomer = new JButton("Create Customer");
+        createCustomer.setBounds(50, 200, 400, 50);
+        createCustomer.setFocusable(false);
+        createCustomer.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        createCustomer.setForeground(Color.YELLOW);
+        createCustomer.setBackground(Color.BLACK);
+        createCustomer.setBorder(border);
+        createCustomer.addActionListener(this);
 
 
-        JPanel mp = new JPanel();
-        mp.setLayout(new GridLayout());
-        mp.setBackground(Color.black);
-        this.add(mp, BorderLayout.CENTER);
 
-        JPanel up = new JPanel();
-        up.setLayout(new GridLayout());
-        up.setBackground(Color.black);
-        this.add(up, BorderLayout.NORTH);
-        
+
         customerOrder = new JButton("Customer Order");
         customerOrder.setBounds(450, 200, 400, 50);
         customerOrder.setFocusable(false);
@@ -164,14 +155,36 @@ public class MenuUI extends JFrame implements ActionListener
 
         
 
-        mp.add(User);
+
+
+        JPanel mp = new JPanel();
+        mp.setLayout(new GridLayout(3,2));
+        mp.setBackground(Color.black);
+        this.add(mp, BorderLayout.CENTER);
+
+        JPanel up = new JPanel();
+        up.setLayout(new GridLayout());
+        up.setBackground(Color.black);
+        this.add(up, BorderLayout.NORTH);
+        
+
+
+
+        
+
+        this.add(User, BorderLayout.SOUTH);
         up.add(POSOption);
+        mp.add(Sales);
+        mp.add(UserRegister);
         mp.add(customerOrder);
+        mp.add(UserLogin);
         mp.add(createCustomer);
         mp.add(UserLogout);
-        mp.add(UserLogin);
-        mp.add(UserRegister);
-        mp.add(Sales);
+        
+        
+        
+        
+        
         if (lines.isEmpty()) {
             new RegisterUI();
         } else if (User.getText().equals("User: Guest"))
