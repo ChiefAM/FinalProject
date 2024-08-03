@@ -4,7 +4,11 @@ Point of Sale System done in java
 Final project (Name to be determined) by Anthony Mouawad AKA ChiefAM
 
 ## Its my first program!!
+<<<<<<< HEAD
 ### Task Status Board
+=======
+
+>>>>>>> 8fb94344f9b8ed4ec32504346b60a5a250790d8d
 🟢 Done
 🟡 In Progress
 🔴 Not Done
