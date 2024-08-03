@@ -94,7 +94,7 @@ public class SalesUI implements ActionListener
         Username.setForeground(Color.YELLOW);
         Username.setBackground(Color.black);
         Username.setBorder(MenuUI.border);
-        Username.setText(LoginUI.UsernameString);
+        Username.setText(MenuUI.User.getText());
         
         //creates the panel for the table
         JPanel SalesPanel = new JPanel();
