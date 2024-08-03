@@ -194,8 +194,7 @@ public class MenuUI extends JFrame implements ActionListener
         }
         else if(e.getSource() == UserRegister)
         {
-            if(fileName.isEmpty())
-            {
+            if(User.getText().equals("User: Guest")){
                 new RegisterUI();
                 //close the current window
                 this.setEnabled(false);

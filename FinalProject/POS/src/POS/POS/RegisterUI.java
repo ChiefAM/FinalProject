@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -49,7 +51,22 @@ public class RegisterUI implements ActionListener
             public RegisterUI() 
             {
                 //creates the frame
-                f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                f.setDefaultCloseOperation(f.DISPOSE_ON_CLOSE);
+                f.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        // Check if the window was disposed (not just hidden)
+                        if (e.getWindow().isDisplayable()) {
+                            return; // If it's still displayable, it was just hidden, so don't open SalesUI
+                        }
+        
+                        
+                        // make it apear on top
+                        MenuUI.instance.toFront();
+                        MenuUI.instance.setEnabled(true);
+                    }
+                });
+                f.setDefaultCloseOperation(f.DISPOSE_ON_CLOSE);
                 f.setSize(400,200);
                 f.setLocationRelativeTo(null);
                 f.setVisible(true);

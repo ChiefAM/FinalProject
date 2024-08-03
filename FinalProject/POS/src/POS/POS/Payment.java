@@ -118,7 +118,7 @@ public class Payment {
 
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true))) {
-                writer.write("Cash Payment: " + ThisTotal + "$ at " + PaymentTime + "\n");
+                writer.write("Cash Payment: " + ThisTotal + "$ at " + PaymentTime +" by "+ LoginUI.UsernameString + "\n");
                 
                 
                 
@@ -141,7 +141,7 @@ public class Payment {
             CryptoTotalToday += ThisTotal;
             PaymentTime = TimeDisplay.getFormattedDateTime();
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true))) {
-                writer.write("Crypto Payment: " + ThisTotal + "$ at " + PaymentTime + "\n");
+                writer.write("Crypto Payment: " + ThisTotal + "$ at " + PaymentTime + " by "+ LoginUI.UsernameString +"\n");
                 
                 
                 
@@ -163,7 +163,7 @@ public class Payment {
             VisaTotalToday += ThisTotal;
             PaymentTime = TimeDisplay.getFormattedDateTime();
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true))) {
-                writer.write("Visa Payment: " + ThisTotal + "$ at " + PaymentTime + "\n");
+                writer.write("Visa Payment: " + ThisTotal + "$ at " + PaymentTime +" by "+ LoginUI.UsernameString + "\n");
                 
                 
                 
