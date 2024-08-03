@@ -21,7 +21,7 @@ This is my first program that I have ever made and I am very proud of it. I have
 - Simple stock management and stock re-order reports 🟡
 - Basic security: sales, supervisor and administrator passwords 🟡
 - Sales reports 🟢
-- Customor orders ( searching / order statuses) 🔴
+- Customor orders ( searching / order statuses) 🟡
 - Sales promotions (monetary discounts, % discounts, buy X get Y free, buy X for £ Y, buy X or more of the same product then change item price to £Y) 🔴
 - The sales data is stored in a customisable .CSV (comma separated values) format which can be then uploaded to your separate computerised accounting / stock management system at a later convenient moment. 🟡
 - And More to come!!

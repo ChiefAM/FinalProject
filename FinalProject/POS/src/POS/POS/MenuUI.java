@@ -35,7 +35,7 @@ public class MenuUI extends JFrame implements ActionListener
     JButton UserLogin;
     JButton UserLogout;
     JButton UserRegister;
-    JButton Settings;
+    JButton setCustomorOrderstings;
     public static JFrame instance;
     String fileName = "credentials.txt";
     String line;
@@ -90,14 +90,14 @@ public class MenuUI extends JFrame implements ActionListener
         //
 
 
-        Settings = new JButton("Settings");
-        Settings.setBounds(50, 200, 400, 50);
-        Settings.setFocusable(false);
-        Settings.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Settings.setForeground(Color.YELLOW);
-        Settings.setBackground(Color.BLACK);
-        Settings.setBorder(border);
-        Settings.addActionListener(this);
+        setCustomorOrderstings = new JButton("Customer Orders");
+        setCustomorOrderstings.setBounds(50, 200, 400, 50);
+        setCustomorOrderstings.setFocusable(false);
+        setCustomorOrderstings.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        setCustomorOrderstings.setForeground(Color.YELLOW);
+        setCustomorOrderstings.setBackground(Color.BLACK);
+        setCustomorOrderstings.setBorder(border);
+        setCustomorOrderstings.addActionListener(this);
 
         UserRegister = new JButton("Register");
         UserRegister.setBounds(450, 100, 400, 50);
@@ -157,7 +157,7 @@ public class MenuUI extends JFrame implements ActionListener
 
         mp.add(User);
         up.add(POSOption);
-        mp.add(Settings);
+        mp.add(setCustomorOrderstings);
         mp.add(UserLogout);
         mp.add(UserLogin);
         mp.add(UserRegister);
@@ -190,11 +190,10 @@ public class MenuUI extends JFrame implements ActionListener
 
             
         }
-        else if(e.getSource() == Settings)
+        else if(e.getSource() == setCustomorOrderstings)
         {
-            new SettingsUI();
-            //close the current window
-            this.dispose();
+            new CustomerOrder();
+
             
         }
         else if(e.getSource() == UserRegister)
