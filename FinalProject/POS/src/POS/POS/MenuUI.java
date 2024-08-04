@@ -45,6 +45,7 @@ public class MenuUI extends JFrame implements ActionListener
     public static Border innerBorder = BorderFactory.createEmptyBorder(2, 2, 0, 0); // Add padding
     public static CompoundBorder border = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
     JButton customerOrder;
+    JButton Orders;
     public MenuUI()
     {
         
@@ -152,6 +153,15 @@ public class MenuUI extends JFrame implements ActionListener
         customerOrder.setBorder(border);
         customerOrder.addActionListener(this);
 
+        
+        Orders = new JButton("Orders");
+        Orders.setBounds(50, 250, 400, 50);
+        Orders.setFocusable(false);
+        Orders.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
+        Orders.setForeground(Color.YELLOW);
+        Orders.setBackground(Color.BLACK);
+        Orders.setBorder(border);
+        Orders.addActionListener(this);
 
         
 
@@ -176,9 +186,10 @@ public class MenuUI extends JFrame implements ActionListener
         up.add(POSOption);
         mp.add(Sales);
         mp.add(UserRegister);
-        mp.add(customerOrder);
-        mp.add(UserLogin);
         mp.add(createCustomer);
+        mp.add(UserLogin);
+        mp.add(customerOrder);
+        mp.add(Orders);
         mp.add(UserLogout);
         
         
@@ -273,6 +284,10 @@ public class MenuUI extends JFrame implements ActionListener
             new CustomerOrder();
 
 
+        }
+        if(e.getSource() == Orders)
+        {
+            new OrdersUI();
         }
 
 

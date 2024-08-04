@@ -132,7 +132,7 @@ public class SalesUI implements ActionListener
             }
         });
 
-        //remove items from table if quantity is 0
+        //remove items from table using delete
         table.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -168,13 +168,7 @@ public class SalesUI implements ActionListener
         sp.getViewport().setForeground(Color.YELLOW);
         
         
-        //colors for the table
-        UIManager.put("Table.background", Color.BLACK);
-        UIManager.put("Table.foreground", Color.YELLOW);
-        UIManager.put("TableHeader.background", Color.BLACK);
-        UIManager.put("TableHeader.foreground", Color.YELLOW);
-        UIManager.put("Table.selectionBackground", Color.DARK_GRAY);
-        UIManager.put("Table.selectionForeground", Color.YELLOW);
+
         // Set the table header font
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(Color.BLACK);
@@ -430,7 +424,7 @@ public class SalesUI implements ActionListener
         //adds the components to the sales panel
         SalesPanel.add(sp, BorderLayout.CENTER);
         SalesPanel.add(total, BorderLayout.SOUTH);
-
+        
 
         
 
