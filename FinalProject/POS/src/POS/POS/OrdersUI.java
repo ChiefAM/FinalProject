@@ -51,8 +51,7 @@ public class OrdersUI
 
 
         
-        try (BufferedReader reader = new BufferedReader(new FileReader("Orders.csv"));
-        BufferedWriter writer = new BufferedWriter(new FileWriter("temp.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Orders.csv"))) {
             String line;
 
         
