@@ -60,11 +60,7 @@ public class Payment {
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Payment");   
 
-        try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
         
         //creates the panel
         JPanel p = new JPanel();

@@ -42,11 +42,7 @@ public class OrdersUI
         f.setResizable(false);
         f.getContentPane().setBackground(new Color(238, 236, 225));
         f.setTitle("Orders");
-        try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
 
         
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);

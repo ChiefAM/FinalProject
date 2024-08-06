@@ -44,11 +44,6 @@ public class CustomerOrder
         f.setTitle("Customer Order");
 
 
-try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
 
         
         JLabel l = new JLabel("Select Customer");

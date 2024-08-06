@@ -50,11 +50,7 @@ public class CreateCustomer
                 f.getContentPane().setBackground(new Color(238, 236, 225));
                 f.setTitle("Create Customer");
 
-try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
 
                 JLabel l = new JLabel("Customer Orders");
                 l.setHorizontalAlignment(JLabel.CENTER);

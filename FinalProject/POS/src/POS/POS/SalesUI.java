@@ -100,11 +100,7 @@ public class SalesUI implements ActionListener
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Sales");
 
-        try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
         //username label
         JLabel Username = new JLabel("Username:");
         Username.setFont(new Font("Cosmic Sans",Font.BOLD, 25));

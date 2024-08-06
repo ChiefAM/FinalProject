@@ -80,11 +80,7 @@ public class RegisterUI implements ActionListener
 
 
 
-                try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
                 //creates the first panel
                 JPanel panel1 = new JPanel();
                 panel1.setBounds(50, 300, 1000, 300);

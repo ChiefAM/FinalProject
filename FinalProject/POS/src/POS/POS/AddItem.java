@@ -73,11 +73,6 @@ public class AddItem implements ActionListener, ItemListener
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Add Item");
 
-try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
 
 
 

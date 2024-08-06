@@ -76,11 +76,7 @@ public class LoginUI implements ActionListener
                 f.getContentPane().setBackground(new Color(238, 236, 225));
                 f.setTitle("Login");
 
-                try (FileInputStream fis = new FileInputStream("icon.png")) {
-    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
-} catch (IOException ex) {
-    // Handle the error
-}
+
 
                 JPanel panel1 = new JPanel();
                 panel1.setBounds(50, 300, 1000, 300);
