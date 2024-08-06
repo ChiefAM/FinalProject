@@ -16,14 +16,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.imageio.plugins.jpeg.JPEGQTable;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -69,6 +72,14 @@ public class AddItem implements ActionListener, ItemListener
         f.setResizable(false);
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Add Item");
+
+try (FileInputStream fis = new FileInputStream("icon.png")) {
+    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
+
+
 
         //creates the first label
         JLabel p = new JLabel("Product Name: ");

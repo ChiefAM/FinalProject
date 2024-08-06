@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -39,7 +42,11 @@ public class OrdersUI
         f.setResizable(false);
         f.getContentPane().setBackground(new Color(238, 236, 225));
         f.setTitle("Orders");
-
+        try (FileInputStream fis = new FileInputStream("icon.png")) {
+    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
 
         
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);

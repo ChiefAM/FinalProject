@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,8 +23,11 @@ import java.text.DecimalFormat;
 import java.util.EventObject;
 import java.util.Scanner;
 import java.util.Vector;
+
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -96,7 +100,11 @@ public class SalesUI implements ActionListener
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Sales");
 
-        
+        try (FileInputStream fis = new FileInputStream("icon.png")) {
+    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
         //username label
         JLabel Username = new JLabel("Username:");
         Username.setFont(new Font("Cosmic Sans",Font.BOLD, 25));

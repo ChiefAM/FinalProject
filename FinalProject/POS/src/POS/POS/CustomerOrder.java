@@ -6,6 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -40,6 +43,12 @@ public class CustomerOrder
         f.getContentPane().setBackground(new Color(238, 236, 225));
         f.setTitle("Customer Order");
 
+
+try (FileInputStream fis = new FileInputStream("icon.png")) {
+    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
 
         
         JLabel l = new JLabel("Select Customer");
@@ -200,8 +209,6 @@ public class CustomerOrder
         panel2.add(productList);
         panel2.add(quantity);
         panel2.add(quantityField);
-
-
 
             
 }

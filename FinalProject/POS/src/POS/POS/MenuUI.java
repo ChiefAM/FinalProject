@@ -7,12 +7,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +70,12 @@ public class MenuUI extends JFrame implements ActionListener
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(Color.black);
         this.setTitle("Point of Sale System");
-
+        //change icon
+try (FileInputStream fis = new FileInputStream("icon.png")) {
+    this.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
 
         User = new JLabel("User: Guest");
         User.setBounds(70, 40, 300, 45);

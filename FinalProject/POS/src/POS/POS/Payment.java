@@ -6,10 +6,13 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Time;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,6 +59,12 @@ public class Payment {
         f.setResizable(false);
         f.getContentPane().setBackground(Color.black);
         f.setTitle("Payment");   
+
+        try (FileInputStream fis = new FileInputStream("icon.png")) {
+    f.setIconImage(new ImageIcon(ImageIO.read(fis)).getImage());
+} catch (IOException ex) {
+    // Handle the error
+}
         
         //creates the panel
         JPanel p = new JPanel();
