@@ -51,15 +51,8 @@ public class OrdersUI
 
 
         
-        try (BufferedReader reader = new BufferedReader(new FileReader("Orders.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Orders.csv"));) {
             String line;
-
-        
-
-
-
-
-
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 List<String> row = Arrays.asList(parts);
@@ -72,7 +65,10 @@ public class OrdersUI
                 model.addRow(new Object[] { dat.get(0), dat.get(1), dat.get(2) }); 
 
                 
+               // print hello world
                
+
+
 
             }
         

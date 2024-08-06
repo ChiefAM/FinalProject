@@ -101,7 +101,7 @@ public class CustomerOrder
 
         
         // Add the new customer data to the file
-        String order =customerList.getSelectedItem() + "," + productList.getSelectedItem() + "," + quantityField.getText();
+        String order =customerList.getSelectedItem() + "," + productList.getSelectedItem() + "," + quantityField.getText() + "\n";
         writer.write(order);
         writer.newLine();
         System.out.println("Order added: " + order);
