@@ -299,7 +299,7 @@ public class SalesUI implements ActionListener
         ItemJPanel.setBorder(MenuUI.border);
 
         //creates the products
-        product1 = new JButton("Product 1 " + p1);
+        product1 = new JButton("Product1 " + p1);
         product1.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         product1.setBackground(Color.black);
         product1.setForeground(Color.yellow);
@@ -307,7 +307,7 @@ public class SalesUI implements ActionListener
         product1.addActionListener(this);
         product1.setFocusable(false);
 
-        product2 = new JButton("Product 2 "+ p2);
+        product2 = new JButton("Product2 "+ p2);
         product2.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         product2.setBackground(Color.black);
         product2.setForeground(Color.yellow);
@@ -315,7 +315,7 @@ public class SalesUI implements ActionListener
         product2.addActionListener(this);
         product2.setFocusable(false);
 
-        product3 = new JButton("Product 3 "+ p3 );
+        product3 = new JButton("Product3 "+ p3 );
         product3.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         product3.setBackground(Color.black);
         product3.setForeground(Color.yellow);
@@ -323,7 +323,7 @@ public class SalesUI implements ActionListener
         product3.addActionListener(this);
         product3.setFocusable(false);
 
-        product4 = new JButton("Product 4 "+p4);
+        product4 = new JButton("Product4 "+p4);
         product4.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         product4.setBackground(Color.black);
         product4.setForeground(Color.yellow);
@@ -331,7 +331,7 @@ public class SalesUI implements ActionListener
         product4.addActionListener(this);
         product4.setFocusable(false);
 
-        product5 = new JButton("Product 5 " + p5);
+        product5 = new JButton("Product5 " + p5);
         product5.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         product5.setBackground(Color.black);
         product5.setForeground(Color.yellow);

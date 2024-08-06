@@ -41,7 +41,7 @@ public class AddItem implements ActionListener, ItemListener
     JTextField pp1;
     JTextField pp;
     String fileName = "Products.txt";
-    public static JComboBox nbItem;
+    public static JComboBox<String> nbItem;
     String[] currency = {"$", "€", "LL"};
     JLabel NbItem;
     public static JLabel curr;
@@ -83,6 +83,7 @@ public class AddItem implements ActionListener, ItemListener
         p.setForeground(Color.yellow);
         p.setBorder(MenuUI.border);
         p.setLayout(new GridLayout());
+        p.setFont(new Font("Arial",Font.PLAIN,24));
         //creates second label
         JLabel p1 = new JLabel("Product Price: ");
         p1.setBounds(50, 300, 1000, 300);
@@ -90,6 +91,7 @@ public class AddItem implements ActionListener, ItemListener
         p1.setForeground(Color.yellow);
         p1.setBorder(MenuUI.border);
         p1.setLayout(new GridLayout());
+        p1.setFont(new Font("Arial",Font.PLAIN,24));
         //creates third label
         JLabel p2 = new JLabel("Product Quantity: ");
         p2.setBounds(50, 300, 1000, 300);
@@ -97,6 +99,7 @@ public class AddItem implements ActionListener, ItemListener
         p2.setForeground(Color.yellow);
         p2.setBorder(MenuUI.border);
         p2.setLayout(new GridLayout());
+        p2.setFont(new Font("Arial",Font.PLAIN,24));
         //creates the text fields 
         pp = new JTextField();
         pp.setBounds(50, 300, 1000, 300);
@@ -131,18 +134,24 @@ public class AddItem implements ActionListener, ItemListener
         });
         
         //creates the combo box
-        nbItem = new JComboBox();
+        nbItem = new JComboBox<String>();
         nbItem.setBounds(50, 300, 1000, 300);
         nbItem.setBorder(MenuUI.border);
         nbItem.setPreferredSize(new java.awt.Dimension(1000, 50));
         nbItem.setBackground(Color.black);
         nbItem.setForeground(Color.yellow);
-        nbItem.setLayout(new GridLayout());
-        nbItem.addItem("1");
-        nbItem.addItem("2");
-        nbItem.addItem("3");
-        nbItem.addItem("4");
-        nbItem.addItem("5");
+        String[] pro1 = SalesUI.product1.getText().split(" ");
+        nbItem.addItem(pro1[0]);
+        String[] pro2 = SalesUI.product2.getText().split(" ");
+        nbItem.addItem(pro2[0]);
+        String[] pro3 = SalesUI.product3.getText().split(" ");
+        nbItem.addItem(pro3[0]);
+        String[] pro4 = SalesUI.product4.getText().split(" ");
+
+        nbItem.addItem(pro4[0]);
+        String[] pro5 = SalesUI.product5.getText().split(" ");
+
+        nbItem.addItem(pro5[0]);
         // Add an item listener to the combo box to update the label
         nbItem.addItemListener(new ItemListener() {public void itemStateChanged(ItemEvent e) {
             
@@ -204,7 +213,7 @@ public class AddItem implements ActionListener, ItemListener
         panel2.setBorder(MenuUI.border);
         panel2.setLayout(new GridLayout(1,2));
         panel2.add(nbItem);
-        panel2.add(NbItem);
+        
 
         //creates the panels
         JPanel panel3 = new JPanel();
@@ -223,14 +232,14 @@ public class AddItem implements ActionListener, ItemListener
         curr.setLayout(new GridLayout());
         
         //creates the combo box
-        JComboBox currencyBox = new JComboBox(currency);
+        JComboBox <String> currencyBox = new JComboBox<String>(currency);
         currencyBox.setBounds(50, 300, 1000, 300);
         currencyBox.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         currencyBox.setPreferredSize(new java.awt.Dimension(1000, 50));
         currencyBox.setBackground(Color.black);
         currencyBox.setForeground(Color.yellow);
         currencyBox.setBorder(MenuUI.border);
-        currencyBox.setLayout(new GridLayout());
+        
         // Add an item listener to the combo box to update the label
         currencyBox.addItemListener(new ItemListener() {public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED)    
@@ -248,9 +257,8 @@ public class AddItem implements ActionListener, ItemListener
         panel1.add(pp1);
         panel1.add(p2);
         panel1.add(pp2);
-        panel2.add(curr);
+        
         panel2.add(currencyBox);
-        panel2.add(NbItem);
         panel2.add(nbItem);
         //adds the panels to the frame
         f.add(panel2,BorderLayout.NORTH);
