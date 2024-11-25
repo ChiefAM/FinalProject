@@ -1,4 +1,3 @@
-# Closing this program will do it in c# and add sql server and make it better will start after summer 
 # FinalProject
 Point of Sale System done in java
 
