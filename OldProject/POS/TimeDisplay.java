@@ -12,7 +12,7 @@ public class TimeDisplay extends JLabel {
         
         super();
         setFont(new Font("Cosmic Sans", Font.BOLD, 25));
-        setForeground(Color.YELLOW);
+        setForeground(Color.DARK_GRAY);
         setBackground(Color.BLACK);
         setOpaque(true);
         setHorizontalAlignment(JLabel.CENTER);

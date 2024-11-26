@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,8 +43,8 @@ public class MenuUI extends JFrame implements ActionListener
     String line;
     List<String> lines = new ArrayList<>();
     
-    public static Border outerBorder = BorderFactory.createMatteBorder(1, 1, 2, 2, Color.YELLOW); // Top, left, bottom, right
-    public static Border innerBorder = BorderFactory.createEmptyBorder(2, 2, 0, 0); // Add padding
+    public static Border outerBorder = BorderFactory.createMatteBorder(1, 1, 2, 2, Color.GRAY); // Top, left, bottom, right
+    public static Border innerBorder = BorderFactory.createEmptyBorder(2, 2, 2, 2); // Add padding
     public static CompoundBorder border = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
     JButton customerOrder;
     JButton Orders;
@@ -58,14 +57,15 @@ public class MenuUI extends JFrame implements ActionListener
                 lines.add(line); 
 
             }
-            } catch (IOException ee) {
+        } catch (IOException ee) {
             System.out.println("Error reading file: " + ee.getMessage());
             }
         instance = this;
         //this is the main menu
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 800);
-        this.setExtendedState(JFrame. MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(Color.black);
@@ -77,7 +77,7 @@ public class MenuUI extends JFrame implements ActionListener
         User.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
         User.setHorizontalAlignment(JLabel.CENTER);
         User.setOpaque(true);
-        User.setForeground(Color.yellow);
+        User.setForeground(Color.GRAY);
         User.setBorder(border);
         User.setOpaque(true);
         User.setBackground(Color.black);
@@ -88,7 +88,7 @@ public class MenuUI extends JFrame implements ActionListener
         POSOption = new JLabel("Point of Sale System");
         POSOption.setBounds(50, 50, 800, 50);
         POSOption.setFont(new Font("Cosmic Sans",Font.BOLD, 40));
-        POSOption.setForeground(Color.yellow);
+        POSOption.setForeground(Color.GRAY);
         POSOption.setHorizontalAlignment(JLabel.CENTER);
         POSOption.setOpaque(true);
         POSOption.setBackground(Color.black);
@@ -99,7 +99,7 @@ public class MenuUI extends JFrame implements ActionListener
         Sales.setBounds(50, 100, 400, 50);
         Sales.setFocusable(false);
         Sales.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Sales.setForeground(Color.yellow);
+        Sales.setForeground(Color.GRAY);
         Sales.setBackground(Color.black);
         Sales.setBorder(border);
         Sales.addActionListener(this);
@@ -109,7 +109,7 @@ public class MenuUI extends JFrame implements ActionListener
         UserRegister.setBounds(450, 100, 400, 50);
         UserRegister.setFocusable(false);
         UserRegister.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserRegister.setForeground(Color.YELLOW);
+        UserRegister.setForeground(Color.GRAY);
         UserRegister.setBackground(Color.BLACK);
         UserRegister.setBorder(border);
         UserRegister.addActionListener(this);
@@ -119,7 +119,7 @@ public class MenuUI extends JFrame implements ActionListener
         UserLogin.setBounds(450, 150, 400, 50);
         UserLogin.setFocusable(false);
         UserLogin.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserLogin.setForeground(Color.YELLOW);
+        UserLogin.setForeground(Color.GRAY);
         UserLogin.setBackground(Color.BLACK);
         UserLogin.setBorder(border);
         UserLogin.addActionListener(this);
@@ -129,7 +129,7 @@ public class MenuUI extends JFrame implements ActionListener
         UserLogout.setBounds(450, 200, 400, 50);
         UserLogout.setFocusable(false);
         UserLogout.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        UserLogout.setForeground(Color.YELLOW);
+        UserLogout.setForeground(Color.GRAY);
         UserLogout.setBackground(Color.BLACK);
         UserLogout.setBorder(border);
         UserLogout.addActionListener(this);
@@ -139,7 +139,7 @@ public class MenuUI extends JFrame implements ActionListener
         createCustomer.setBounds(50, 200, 400, 50);
         createCustomer.setFocusable(false);
         createCustomer.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        createCustomer.setForeground(Color.YELLOW);
+        createCustomer.setForeground(Color.GRAY);
         createCustomer.setBackground(Color.BLACK);
         createCustomer.setBorder(border);
         createCustomer.addActionListener(this);
@@ -151,7 +151,7 @@ public class MenuUI extends JFrame implements ActionListener
         customerOrder.setBounds(450, 200, 400, 50);
         customerOrder.setFocusable(false);
         customerOrder.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        customerOrder.setForeground(Color.YELLOW);
+        customerOrder.setForeground(Color.GRAY);
         customerOrder.setBackground(Color.BLACK);
         customerOrder.setBorder(border);
         customerOrder.addActionListener(this);
@@ -161,7 +161,7 @@ public class MenuUI extends JFrame implements ActionListener
         Orders.setBounds(50, 250, 400, 50);
         Orders.setFocusable(false);
         Orders.setFont(new Font("Cosmic Sans",Font.BOLD, 25));
-        Orders.setForeground(Color.YELLOW);
+        Orders.setForeground(Color.GRAY);
         Orders.setBackground(Color.BLACK);
         Orders.setBorder(border);
         Orders.addActionListener(this);
@@ -171,7 +171,7 @@ public class MenuUI extends JFrame implements ActionListener
 
 
         JPanel mp = new JPanel();
-        mp.setLayout(new GridLayout(3,2));
+        mp.setLayout(new GridLayout(3,2,10,10));
         mp.setBackground(Color.black);
         this.add(mp, BorderLayout.CENTER);
 
@@ -199,10 +199,10 @@ public class MenuUI extends JFrame implements ActionListener
         
         
         
-        if (lines.isEmpty()) {
+        if (lines.isEmpty() ) {
             new RegisterUI();
-        } else if (User.getText().equals("User: Guest"))
-        {
+        } else if (User.getText().equals("User: Guest") )
+        {   
             new LoginUI();
         }
         }
